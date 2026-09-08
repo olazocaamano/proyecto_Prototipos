@@ -5,7 +5,7 @@
 
 ---
 
-## Parte 1: Monica
+## Parte 1: Mónica
 
 ### Módulo 1: Inicio de sesión
 *(Redactar casos de uso aquí)*
