@@ -1,0 +1,15 @@
+# Dependencias
+node_modules/
+venv/
+__pycache__/
+
+# Variables de entorno (contraseñas y conexiones a base de datos)
+.env
+
+# Archivos locales del editor
+.vscode/
+.idea/
+
+# Archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
