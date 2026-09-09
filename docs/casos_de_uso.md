@@ -33,7 +33,7 @@
 
 ---
 
-#### Caso de Uso 01: Registro de asistencia diaria
+#### Caso de Uso 25: Registro de asistencia diaria
 
 **ID:** CU-ASISTENCIA-01  
 **Actor Principal:** Docente  
@@ -57,11 +57,36 @@
 
 ---
 
+#### Caso de Uso 26: Justificación de inasistencias históricas
+
+**ID:** CU-ASISTENCIA-25  
+**Actor Principal:** Docente  
+**Descripción:** Permite al docente modificar el registro de asistencia de un día anterior para cambiar el estado de "Falta" a "Justificado" cuando un alumno presenta un justificante médico o administrativo de forma extemporánea.
+
+**Precondiciones:**
+- Debe existir un registro de inasistencia previo para el alumno en una fecha pasada.
+
+**Flujo Principal (Escenario de Éxito):**
+1. El docente accede al módulo de "Asistencia" y cambia la vista a "Historial".
+2. El sistema muestra el calendario o tabla de registros anteriores.
+3. El docente localiza la fecha específica y al alumno con la falta.
+4. El docente cambia el estado de "Falta" a "Justificado" y anota el motivo (ej. Receta médica).
+5. El docente guarda los cambios.
+6. El sistema actualiza el registro, recalcula el porcentaje total de asistencia del alumno y actualiza el módulo de "Alumnos en riesgo" si el alumno sale del umbral crítico.
+
+**Flujos Alternativos (Excepciones y Errores):**
+- **Paso 4a (Bloqueo por fin de periodo):** Si el periodo de evaluación ya fue cerrado y enviado a administración, el sistema bloquea la edición y notifica al docente que las modificaciones históricas están deshabilitadas para ese ciclo.
+
+**Postcondiciones:**
+- El historial del alumno refleja la justificación y se corrigen sus métricas generales.
+
+---
+
 ### Módulo 8: Participaciones
 
 ---
 
-#### Caso de Uso 01: Registro de participaciones con valor numérico
+#### Caso de Uso 27: Registro de participaciones con valor numérico
 
 **ID:** CU-PARTICIPACIONES-01  
 **Actor Principal:** Docente  
@@ -85,11 +110,36 @@
 
 ---
 
+#### Caso de Uso 28: Asignación masiva de participaciones por equipo
+
+**ID:** CU-PARTICIPACIONES-26  
+**Actor Principal:** Docente  
+**Descripción:** Agiliza el registro de participaciones permitiendo al docente seleccionar a múltiples alumnos al mismo tiempo (por ejemplo, tras una exposición en equipo) para asignarles el mismo valor numérico en una sola acción.
+
+**Precondiciones:**
+- El grupo debe tener alumnos inscritos y activos.
+
+**Flujo Principal (Escenario de Éxito):**
+1. El docente ingresa al módulo de "Participaciones".
+2. El sistema muestra la lista de alumnos.
+3. El docente activa la opción de "Selección múltiple" o "Equipos".
+4. El docente marca las casillas de varios alumnos simultáneamente.
+5. El docente ingresa un valor numérico único y confirma el registro.
+6. El sistema aplica el mismo puntaje a todos los alumnos seleccionados de forma masiva.
+
+**Flujos Alternativos (Excepciones y Errores):**
+- **Paso 4a (Ningún alumno seleccionado):** Si el docente intenta guardar el puntaje sin haber marcado casillas, el sistema deshabilita el botón de confirmación hasta que se seleccione al menos a un estudiante.
+
+**Postcondiciones:**
+- Los puntajes se suman al historial individual de cada alumno seleccionado.
+
+---
+
 ### Módulo 9: Calificaciones
 
 ---
 
-#### Caso de Uso 01: Configuración de criterios y cálculo automático
+#### Caso de Uso 29: Configuración de criterios y cálculo automático
 
 **ID:** CU-CALIFICACIONES-01  
 **Actor Principal:** Docente  
@@ -107,10 +157,34 @@
 6. El sistema muestra el rendimiento individual de cada alumno y el promedio general del grupo.
 
 **Flujos Alternativos (Excepciones y Errores):**
-- **Paso 4a (Porcentaje inválido):** Si la suma de los criterios es menor o mayor a 100%, el sistema bloquea el guardado y resalta en rojo el total para solicitar la corrección.
+- **Paso 4a (Porcentaje inválido):** Si la suma de los criterios es menor o mayor a 100%, el sistema bloquea el guardado y resalta el total para solicitar la corrección.
 
 **Postcondiciones:**
 - El promedio del alumno queda calculado y disponible para detectar si entra en estado de riesgo.
+
+---
+
+#### Caso de Uso 30: Exportación de actas de calificaciones
+
+**ID:** CU-CALIFICACIONES-27  
+**Actor Principal:** Docente  
+**Descripción:** Permite al docente exportar la sábana final de calificaciones del grupo en formatos estándar (PDF o Excel) para entregarla a la administración escolar o para archivo personal.
+
+**Precondiciones:**
+- Todas las calificaciones del periodo deben estar capturadas y calculadas.
+
+**Flujo Principal (Escenario de Éxito):**
+1. El docente ingresa al módulo de "Calificaciones" y selecciona un grupo y periodo finalizado.
+2. El docente hace clic en el botón "Exportar acta".
+3. El sistema solicita el formato de salida (Excel o PDF).
+4. El docente selecciona el formato.
+5. El sistema compila los datos, genera el documento con el diseño institucional y descarga el archivo en el dispositivo del docente.
+
+**Flujos Alternativos (Excepciones y Errores):**
+- **Paso 2a (Calificaciones incompletas):** Si el sistema detecta que hay alumnos sin calificación asignada en ese periodo, lanza una advertencia preguntando si el docente desea exportar el acta con espacios en blanco.
+
+**Postcondiciones:**
+- El docente obtiene un archivo físico o digital listo para trámites administrativos.
 
 ---
 
@@ -118,7 +192,7 @@
 
 ---
 
-#### Caso de Uso 01: Detección automática de riesgo académico
+#### Caso de Uso 31: Detección automática de riesgo académico
 
 **ID:** CU-RIESGO-01  
 **Actor Principal:** Docente  
@@ -142,11 +216,35 @@
 
 ---
 
+#### Caso de Uso 32: Registro de tutoría o acuerdos
+
+**ID:** CU-RIESGO-28  
+**Actor Principal:** Docente  
+**Descripción:** Permite al docente documentar las acciones tomadas respecto a un alumno en riesgo, como una plática de tutoría, un citatorio a padres o un acuerdo de recuperación, dejando evidencia del seguimiento.
+
+**Precondiciones:**
+- El alumno debe aparecer en la lista de riesgo del sistema.
+
+**Flujo Principal (Escenario de Éxito):**
+1. El docente ingresa a "Alumnos en riesgo" y selecciona el perfil de un estudiante.
+2. El docente hace clic en "Agregar nota de seguimiento".
+3. El sistema despliega un formulario solicitando fecha, tipo de acción (Tutoría, Citatorio, Tarea extra) y detalles del acuerdo.
+4. El docente llena los datos y guarda el registro.
+5. El sistema anexa esta nota al expediente interno del alumno.
+
+**Flujos Alternativos (Excepciones y Errores):**
+- **Paso 3a (Cancelación de nota):** Si el docente decide cancelar la redacción de la nota, el sistema descarta los cambios sin guardar nada en la base de datos.
+
+**Postcondiciones:**
+- Existe un respaldo formal del esfuerzo del docente por ayudar al estudiante a mejorar su rendimiento.
+
+---
+
 ### Módulo 11: Archivos
 
 ---
 
-#### Caso de Uso 01: Carga y clasificación de material didáctico
+#### Caso de Uso 33: Carga y clasificación de material didáctico
 
 **ID:** CU-ARCHIVOS-01  
 **Actor Principal:** Docente  
@@ -169,11 +267,35 @@
 
 ---
 
+#### Caso de Uso 34: Filtrado avanzado de material didáctico
+
+**ID:** CU-ARCHIVOS-29  
+**Actor Principal:** Docente  
+**Descripción:** Permite localizar rápidamente documentos específicos en el repositorio mediante el uso de filtros cruzados por tipo de archivo, etiquetas, materia y fecha de subida.
+
+**Precondiciones:**
+- El sistema debe tener archivos previamente cargados y etiquetados.
+
+**Flujo Principal (Escenario de Éxito):**
+1. El docente accede al módulo de "Archivos".
+2. El sistema muestra la barra de búsqueda avanzada.
+3. El docente selecciona los filtros deseados (ej. Tipo: "Examen", Etiqueta: "Historia").
+4. El sistema procesa la consulta y oculta los archivos que no coinciden.
+5. El sistema muestra únicamente los documentos exactos que cumplen con los criterios.
+
+**Flujos Alternativos (Excepciones y Errores):**
+- **Paso 4a (Sin resultados):** Si ningún archivo coincide con los filtros aplicados, el sistema muestra un mensaje indicando que no hay coincidencias y sugiere limpiar los filtros.
+
+**Postcondiciones:**
+- El docente encuentra el material necesario sin perder tiempo buscando carpeta por carpeta.
+
+---
+
 ### Módulo 12: Inteligencia artificial
 
 ---
 
-#### Caso de Uso 01: Asistente analítico del grupo y recomendaciones
+#### Caso de Uso 35: Asistente analítico del grupo y recomendaciones
 
 **ID:** CU-IA-01  
 **Actor Principal:** Docente  
@@ -197,11 +319,36 @@
 
 ---
 
+#### Caso de Uso 36: Generación de reactivos basados en documentos
+
+**ID:** CU-IA-30  
+**Actor Principal:** Docente  
+**Descripción:** Permite al docente seleccionar un archivo PDF o documento de texto previamente subido al sistema para que la Inteligencia artificial lo lea y genere automáticamente preguntas de examen basadas estrictamente en ese contenido.
+
+**Precondiciones:**
+- El docente debe haber subido el material de lectura al Módulo 11 (Archivos).
+
+**Flujo Principal (Escenario de Éxito):**
+1. El docente ingresa al módulo de "Inteligencia artificial" y selecciona la opción "Generar examen desde archivo".
+2. El sistema abre el explorador interno de archivos.
+3. El docente selecciona un documento y especifica la cantidad y tipo de preguntas (ej. 10 de opción múltiple).
+4. El sistema envía el texto del documento a la IA.
+5. La IA procesa la información y devuelve el cuestionario estructurado junto con la hoja de respuestas.
+6. El docente guarda el resultado como un nuevo archivo.
+
+**Flujos Alternativos (Excepciones y Errores):**
+- **Paso 4a (Archivo no soportado para lectura):** Si el docente selecciona una imagen escaneada sin texto seleccionable o un formato no compatible, el sistema advierte que la IA no puede extraer el contenido y solicita un documento de texto válido.
+
+**Postcondiciones:**
+- El docente obtiene un examen listo para aplicar, ahorrando horas de redacción.
+
+---
+
 ### Módulo 13: Resumen inteligente
 
 ---
 
-#### Caso de Uso 01: Generación de reportes estadísticos y recomendaciones
+#### Caso de Uso 37: Generación de reportes estadísticos y recomendaciones
 
 **ID:** CU-RESUMEN-01  
 **Actor Principal:** Docente  
@@ -223,3 +370,29 @@
 
 **Postcondiciones:**
 - El docente obtiene un panorama completo e imprimible del estado actual de su grupo.
+
+---
+
+#### Caso de Uso 38: Envío automatizado de reportes al estudiante
+
+**ID:** CU-RESUMEN-31  
+**Actor Principal:** Docente  
+**Descripción:** Permite al docente enviar el reporte integral de desempeño generado por el sistema directamente al correo electrónico del alumno o tutor, facilitando la comunicación sobre su rendimiento.
+
+**Precondiciones:**
+- El perfil del alumno en la base de datos debe tener un correo electrónico válido registrado.
+- El reporte integral debe haberse generado previamente.
+
+**Flujo Principal (Escenario de Éxito):**
+1. El docente visualiza el "Resumen inteligente" individual de un estudiante.
+2. El docente hace clic en la opción "Enviar reporte por correo".
+3. El sistema adjunta el archivo en PDF y genera un mensaje predeterminado.
+4. El docente confirma el envío.
+5. El sistema utiliza el servidor de correo integrado para despachar el mensaje.
+6. El sistema notifica al docente que el correo fue enviado correctamente y registra la acción en el expediente del alumno.
+
+**Flujos Alternativos (Excepciones y Errores):**
+- **Paso 3a (Correo faltante):** Si el alumno no tiene un correo registrado en el sistema, la opción de envío se desactiva y el sistema sugiere exportar el documento para entregarlo físicamente.
+
+**Postcondiciones:**
+- El estudiante recibe la retroalimentación de su desempeño de forma digital e inmediata.
