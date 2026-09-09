@@ -9,19 +9,19 @@
 
 ### Módulo 1: Inicio de sesión
 
-### CU-01: Registrar cuenta
+#### Caso de Uso 01: Registrar cuenta
 
-**Actor:** Docente
-
-**Objetivo:**
-Permitir que el docente cree una cuenta personal para acceder al sistema.
+**ID:** CU-INICIO-SESION-01
+**Actor Principal:** Docente
+**Descripción:** Permite que el docente cree una cuenta personal para acceder al sistema.
 
 **Precondiciones:**
 
 * El docente no debe tener una cuenta registrada con el mismo usuario o correo electrónico.
-* El docente debe de llenar todos los campos.
+* El docente debe completar todos los campos requeridos.
+* El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente selecciona la opción **"Registrarse"**.
 2. El sistema muestra el formulario de registro.
@@ -34,33 +34,38 @@ Permitir que el docente cree una cuenta personal para acceder al sistema.
 9. El sistema crea la cuenta del docente.
 10. El sistema informa que el registro se realizó correctamente.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el usuario ya está registrado, el sistema informa al docente y solicita ingresar otro usuario.
-* Si el correo electrónico ya está registrado, el sistema informa al docente y solicita utilizar otro correo.
-* Si algún campo obligatorio está vacío, el sistema solicita completar la información.
-* Si la contraseña no cumple con los requisitos de seguridad establecidos, el sistema solicita crear una contraseña válida.
-* Si ocurre un error durante el registro, el sistema informa que la cuenta no pudo ser creada.
+* **Paso 3a:** Si el docente no ingresa el usuario, el sistema solicita completar el campo.
+* **Paso 3b:** Si el usuario ingresado ya está registrado, el sistema informa al docente y solicita ingresar otro usuario.
+* **Paso 4a:** Si el docente no ingresa el correo electrónico, el sistema solicita completar el campo.
+* **Paso 4b:** Si el correo electrónico tiene un formato incorrecto, el sistema solicita ingresar un correo válido.
+* **Paso 4c:** Si el correo electrónico ya está registrado, el sistema informa al docente y solicita utilizar otro correo.
+* **Paso 5a:** Si la contraseña no cumple con los requisitos de seguridad establecidos, el sistema solicita crear una contraseña válida.
+* **Paso 6a:** Si el docente no confirma el registro, el sistema mantiene el formulario sin crear la cuenta.
+* **Paso 7a:** Si algún dato ingresado no es válido, el sistema informa al docente y solicita corregirlo.
+* **Paso 9a:** Si ocurre un error durante la creación de la cuenta, el sistema informa al docente que la cuenta no pudo ser creada.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La cuenta del docente queda registrada en el sistema.
 * La información queda asociada al perfil del docente.
 * El docente puede utilizar sus credenciales para iniciar sesión.
 
-### CU-02: Iniciar sesión
+---
 
-**Actor:** Docente
+#### Caso de Uso 02: Iniciar sesión
 
-**Objetivo:**
-Permitir que el docente acceda a su cuenta y a la información asociada a sus grupos.
+**ID:** CU-INICIO-SESION-02
+**Actor Principal:** Docente
+**Descripción:** Permite que el docente acceda a su cuenta y a la información asociada a sus grupos.
 
 **Precondiciones:**
 
 * El docente debe tener una cuenta registrada.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente selecciona la opción **"Iniciar sesión"**.
 2. El sistema muestra el formulario de inicio de sesión.
@@ -72,25 +77,29 @@ Permitir que el docente acceda a su cuenta y a la información asociada a sus gr
 8. El sistema permite el acceso al perfil del docente.
 9. El sistema muestra el panel principal.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el usuario o correo electrónico no existe, el sistema informa que las credenciales son incorrectas.
-* Si la contraseña es incorrecta, el sistema informa que las credenciales son incorrectas.
-* Si algún campo está vacío, el sistema solicita completar la información.
-* Si ocurre un error durante la autenticación, el sistema informa que no fue posible iniciar sesión.
+* **Paso 3a:** Si el usuario o correo electrónico no existe, el sistema informa que las credenciales son incorrectas.
+* **Paso 3b:** Si el campo está vacío, el sistema solicita ingresar el usuario o correo electrónico.
+* **Paso 4a:** Si la contraseña es incorrecta, el sistema informa que las credenciales son incorrectas.
+* **Paso 4b:** Si el campo de contraseña está vacío, el sistema solicita ingresar la contraseña.
+* **Paso 6a:** Si ocurre un error durante la autenticación, el sistema informa que no fue posible iniciar sesión.
+* **Paso 7a:** Si no es posible identificar la cuenta correspondiente, el sistema informa que las credenciales son incorrectas.
+* **Paso 8a:** Si ocurre un error al establecer la sesión, el sistema informa que no fue posible acceder a la cuenta.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El docente queda autenticado en el sistema.
 * El docente puede acceder únicamente a la información asociada a su propia cuenta.
-* El docente puede entrar a su cuenta.
+* El docente puede acceder al panel principal.
 
-### CU-03: Recuperar contraseña
+---
 
-**Actor:** Docente
+#### Caso de Uso 03: Recuperar contraseña
 
-**Objetivo:**
-Permitir que el docente recupere el acceso a su cuenta cuando no recuerde su contraseña.
+**ID:** CU-INICIO-SESION-03
+**Actor Principal:** Docente
+**Descripción:** Permite que el docente recupere el acceso a su cuenta cuando no recuerde su contraseña.
 
 **Precondiciones:**
 
@@ -98,7 +107,7 @@ Permitir que el docente recupere el acceso a su cuenta cuando no recuerde su con
 * La cuenta debe contar con un correo electrónico asociado.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente selecciona la opción **"¿Olvidaste tu contraseña?"**.
 2. El sistema solicita el correo electrónico asociado a la cuenta.
@@ -112,32 +121,36 @@ Permitir que el docente recupere el acceso a su cuenta cuando no recuerde su con
 10. El sistema actualiza la contraseña.
 11. El sistema informa que la contraseña fue modificada correctamente.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el correo electrónico no está registrado, el sistema informa que no existe una cuenta asociada.
-* Si el correo electrónico tiene un formato incorrecto, el sistema solicita ingresar un correo válido.
-* Si la nueva contraseña no cumple con los requisitos de seguridad, el sistema solicita ingresar una contraseña diferente.
-* Si las contraseñas ingresadas no coinciden, el sistema solicita confirmarla nuevamente.
-* Si ocurre un error durante el proceso, el sistema informa que no fue posible restablecer la contraseña.
+* **Paso 3a:** Si el docente no ingresa un correo electrónico, el sistema solicita completar el campo.
+* **Paso 3b:** Si el correo electrónico tiene un formato incorrecto, el sistema solicita ingresar un correo válido.
+* **Paso 4a:** Si el correo electrónico no está registrado, el sistema informa que no existe una cuenta asociada.
+* **Paso 5a:** Si ocurre un error al enviar las instrucciones de recuperación, el sistema informa que no fue posible enviar el correo.
+* **Paso 6a:** Si el enlace de recuperación no es válido o ha expirado, el sistema informa al docente y solicita iniciar nuevamente el proceso.
+* **Paso 8a:** Si las contraseñas ingresadas no coinciden, el sistema solicita confirmarla nuevamente.
+* **Paso 9a:** Si la nueva contraseña no cumple con los requisitos de seguridad, el sistema solicita ingresar una contraseña diferente.
+* **Paso 10a:** Si ocurre un error al actualizar la contraseña, el sistema informa que no fue posible restablecerla.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La contraseña de la cuenta queda actualizada.
 * El docente puede utilizar la nueva contraseña para iniciar sesión.
 
-### CU-04: Cerrar sesión
+---
 
-**Actor:** Docente
+#### Caso de Uso 04: Cerrar sesión
 
-**Objetivo:**
-Permitir que el docente finalice su sesión y proteja el acceso a su cuenta.
+**ID:** CU-INICIO-SESION-04
+**Actor Principal:** Docente
+**Descripción:** Permite que el docente finalice su sesión y proteja el acceso a su cuenta.
 
 **Precondiciones:**
 
 * El docente debe haber iniciado sesión.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente selecciona la opción **"Cerrar sesión"**.
 2. El sistema muestra o ejecuta la opción para finalizar la sesión.
@@ -145,190 +158,200 @@ Permitir que el docente finalice su sesión y proteja el acceso a su cuenta.
 4. El sistema finaliza la sesión activa.
 5. El sistema redirige al docente a la pantalla de inicio de sesión.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si ocurre un error al finalizar la sesión, el sistema informa al docente que no fue posible cerrar la sesión correctamente.
-* Si el docente cancela la acción cuando se solicita confirmación, el sistema mantiene la sesión activa.
+* **Paso 3a:** Si el docente cancela la acción cuando se solicita confirmación, el sistema mantiene la sesión activa.
+* **Paso 4a:** Si ocurre un error al finalizar la sesión, el sistema informa al docente que no fue posible cerrar la sesión correctamente.
+* **Paso 5a:** Si ocurre un error al redirigir a la pantalla de inicio de sesión, el sistema informa al docente y mantiene bloqueadas las funciones privadas.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La sesión del docente queda finalizada.
 * El acceso a las funciones privadas del sistema queda bloqueado hasta que el docente vuelva a iniciar sesión.
 
 ### Módulo 2: Panel principal
 
-### CU-05: Consultar grupos
+---
 
-**Actor:** Docente
+#### Caso de Uso 05: Consultar grupos
 
-**Objetivo:**
-Permitir que el docente consulte los grupos que tiene registrados en su cuenta desde el panel principal.
+**ID:** CU-PANEL-01
+**Actor Principal:** Docente
+**Descripción:** Permite al docente consultar los grupos registrados en su cuenta desde el panel principal y acceder a la información de un grupo seleccionado.
 
 **Precondiciones:**
 
 * El docente debe haber iniciado sesión.
 * El sistema debe estar disponible.
-* El docente debe tener al menos un grupo registrado para mostrar información.
+* Debe existir al menos un grupo registrado en la cuenta.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente inicia sesión en el sistema.
 2. El sistema muestra el panel principal.
-3. El sistema consulta los grupos asociados a la cuenta del docente.
-4. El sistema muestra los grupos disponibles en el panel principal.
+3. El docente consulta los grupos asociados a su cuenta.
+4. El sistema muestra los grupos registrados.
 5. El docente selecciona un grupo.
-6. El sistema muestra el acceso al grupo seleccionado.
+6. El sistema muestra el acceso a la información y funciones del grupo seleccionado.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el docente no tiene grupos registrados, el sistema muestra un mensaje indicando que no existen grupos y proporciona la opción de crear uno.
-* Si ocurre un error al cargar los grupos, el sistema informa al docente que no fue posible mostrar la información.
+* **Paso 3a (Sin grupos registrados):** Si el docente no tiene grupos registrados, el sistema muestra un mensaje indicando que no existen grupos y ofrece la opción de crear uno.
+* **Paso 4a (Error al cargar grupos):** Si el sistema no puede cargar los grupos, muestra un mensaje indicando que no fue posible mostrar la información.
+* **Paso 5a (Grupo no disponible):** Si el grupo seleccionado ya no está disponible, el sistema informa al docente y mantiene la lista de grupos.
 
-**Postcondición:**
+**Postcondiciones:**
 
-* El docente puede visualizar sus grupos desde el panel principal.
+* El docente puede visualizar los grupos asociados a su cuenta.
 * El docente puede acceder al grupo seleccionado.
 
-### CU-06: Consultar accesos rápidos
+---
 
-**Actor:** Docente
+#### Caso de Uso 06: Consultar accesos rápidos
 
-**Objetivo:**
-Permitir que el docente acceda rápidamente a las funciones principales del sistema desde el panel principal.
+**ID:** CU-PANEL-02
+**Actor Principal:** Docente
+**Descripción:** Permite al docente acceder rápidamente a las principales funciones del sistema desde el panel principal.
 
 **Precondiciones:**
 
 * El docente debe haber iniciado sesión.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente accede al panel principal.
 2. El sistema muestra las opciones de acceso rápido disponibles.
-3. El docente selecciona la función que desea utilizar.
+3. El docente selecciona una de las funciones.
 4. El sistema dirige al docente al módulo correspondiente.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si la función seleccionada no está disponible temporalmente, el sistema informa al docente y mantiene el panel principal.
-* Si ocurre un error al acceder al módulo seleccionado, el sistema informa que no fue posible abrirlo.
+* **Paso 3a (Función no disponible):** Si la función seleccionada no está disponible temporalmente, el sistema informa al docente y mantiene el panel principal.
+* **Paso 4a (Error al abrir módulo):** Si el sistema no puede abrir el módulo seleccionado, muestra un mensaje indicando que no fue posible acceder a la función.
 
-**Postcondición:**
+**Postcondiciones:**
 
-* El docente es dirigido al módulo correspondiente a la opción seleccionada.
+* El docente es dirigido al módulo correspondiente cuando el acceso es exitoso.
+* El panel principal se mantiene disponible si ocurre algún error.
 
-### CU-07: Consultar recordatorios
+---
 
-**Actor:** Docente
+#### Caso de Uso 07: Consultar recordatorios
 
-**Objetivo:**
-Permitir que el docente consulte los recordatorios y pendientes registrados en el sistema desde el panel principal.
+**ID:** CU-PANEL-03
+**Actor Principal:** Docente
+**Descripción:** Permite al docente consultar desde el panel principal los recordatorios y pendientes registrados en el sistema.
 
 **Precondiciones:**
 
 * El docente debe haber iniciado sesión.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente accede al panel principal.
-2. El sistema consulta los recordatorios asociados al docente.
+2. El sistema consulta los recordatorios y pendientes asociados al docente.
 3. El sistema muestra los recordatorios y pendientes disponibles.
 4. El docente consulta la información mostrada.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si no existen recordatorios o pendientes, el sistema muestra un mensaje indicando que no hay elementos pendientes.
-* Si ocurre un error al cargar los recordatorios, el sistema informa al docente que no fue posible mostrar la información.
+* **Paso 2a (Sin recordatorios):** Si no existen recordatorios o pendientes registrados, el sistema muestra un mensaje indicando que no hay pendientes.
+* **Paso 3a (Error al cargar recordatorios):** Si el sistema no puede cargar los recordatorios, muestra un mensaje indicando que no fue posible mostrar la información.
 
-**Postcondición:**
+**Postcondiciones:**
 
-* El docente puede consultar sus recordatorios y pendientes desde el panel principal.
+* El docente puede consultar sus recordatorios y pendientes registrados.
+* Si no existen pendientes, el sistema informa que no hay recordatorios disponibles.
 
-### CU-08: Consultar resumen y estadísticas
+---
 
-**Actor:** Docente
+#### Caso de Uso 08: Consultar resumen y estadísticas
 
-**Objetivo:**
-Permitir que el docente consulte un resumen general del estado académico de sus grupos mediante estadísticas relevantes.
+**ID:** CU-PANEL-04
+**Actor Principal:** Docente
+**Descripción:** Permite al docente consultar un resumen general del estado académico de sus grupos mediante estadísticas, información de alumnos en posible riesgo y actividades pendientes.
 
 **Precondiciones:**
 
 * El docente debe haber iniciado sesión.
 * El sistema debe estar disponible.
-* El docente debe tener información registrada en al menos uno de sus grupos.
+* Debe existir información registrada de al menos un grupo.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente accede al panel principal.
-2. El sistema recopila la información disponible de los grupos del docente.
-3. El sistema procesa la información registrada.
-4. El sistema muestra un resumen general con estadísticas relevantes.
-5. El sistema muestra información sobre alumnos que pueden encontrarse en riesgo académico.
-6. El sistema muestra información relacionada con tareas o actividades pendientes, cuando exista.
-7. El docente consulta las estadísticas mostradas.
+2. El sistema recopila la información disponible de los grupos asociados.
+3. El sistema procesa la información recopilada.
+4. El sistema muestra un resumen general con las estadísticas disponibles.
+5. El sistema muestra los alumnos que posiblemente se encuentren en riesgo.
+6. El sistema muestra las tareas o actividades pendientes cuando existan.
+7. El docente consulta el resumen y las estadísticas mostradas.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si no existe suficiente información registrada, el sistema muestra un mensaje indicando que las estadísticas aún no están disponibles.
-* Si no existen alumnos identificados en riesgo académico, el sistema indica que no se han detectado alumnos en riesgo.
-* Si no existen tareas o actividades pendientes, el sistema indica que no hay pendientes registrados.
-* Si ocurre un error al procesar la información, el sistema informa al docente que no fue posible generar el resumen.
+* **Paso 2a (Información insuficiente):** Si no existe suficiente información registrada para generar las estadísticas, el sistema indica que las estadísticas aún no están disponibles.
+* **Paso 5a (Sin alumnos en riesgo):** Si no se detectan alumnos que posiblemente se encuentren en riesgo, el sistema indica que no se han detectado alumnos en esta situación.
+* **Paso 6a (Sin tareas pendientes):** Si no existen tareas o actividades pendientes, el sistema indica que no hay pendientes disponibles.
+* **Paso 3a (Error al procesar información):** Si ocurre un error durante el procesamiento de la información, el sistema muestra un mensaje indicando que no fue posible generar el resumen.
 
-**Postcondición:**
+**Postcondiciones:**
 
-* El docente puede consultar un resumen general del estado de sus grupos.
-* El docente puede identificar información relevante sobre el rendimiento académico y los pendientes.
+* El docente puede consultar un resumen general del estado académico de sus grupos.
+* El docente puede identificar el rendimiento general, posibles alumnos en riesgo y actividades pendientes cuando exista información disponible.
 
 ### Módulo 3: Grupos
 
-### CU-09: Crear grupo
+#### Caso de Uso 01: Crear grupo
 
-**Actor:** Docente
-
-**Objetivo:**
-Permitir que el docente cree un nuevo grupo para organizar y administrar la información de sus alumnos.
+**ID:** CU-GRUPOS-01
+**Actor Principal:** Docente
+**Descripción:** Permite al docente crear un nuevo grupo para organizar y administrar la información de sus alumnos.
 
 **Precondiciones:**
 
 * El docente debe haber iniciado sesión.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente selecciona la opción **"Crear grupo"**.
 2. El sistema muestra el formulario para crear un grupo.
-3. El docente ingresa la información del grupo.
-4. El docente puede ingresar la escuela.
-5. El docente puede ingresar la materia.
+3. El docente ingresa la información general del grupo.
+4. El docente ingresa la escuela.
+5. El docente ingresa la materia.
 6. El docente ingresa el grupo.
-7. El docente puede ingresar el grado o semestre.
-8. El docente puede seleccionar el turno.
-9. El docente puede ingresar la carrera o especialidad.
-10. El docente puede ingresar el ciclo escolar.
+7. El docente ingresa el grado o semestre.
+8. El docente selecciona el turno.
+9. El docente ingresa la carrera o especialidad.
+10. El docente ingresa el ciclo escolar.
 11. El docente confirma la creación del grupo.
 12. El sistema revisa la información ingresada.
 13. El sistema crea el grupo y lo asocia a la cuenta del docente.
 14. El sistema muestra el grupo creado.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si algún dato necesario está vacío, el sistema solicita completar la información.
-* Si la información ingresada no es válida, el sistema solicita corregirla.
-* Si ya existe un grupo con la misma información, el sistema informa al docente para evitar crear un grupo repetido.
-* Si ocurre un error al crear el grupo, el sistema informa al docente que no fue posible crear el grupo.
+* **Paso 3a (Información incompleta):** Si el docente no completa algún dato necesario, el sistema solicita ingresar la información faltante.
+* **Paso 3b (Información inválida):** Si alguno de los datos ingresados no cumple con el formato establecido, el sistema solicita corregirlo.
+* **Paso 11a (Cancelación):** Si el docente cancela la creación, el sistema descarta la información ingresada y regresa al apartado de grupos.
+* **Paso 12a (Información inválida):** Si el sistema detecta información incorrecta durante la validación, bloquea la creación y solicita corregir los datos.
+* **Paso 12b (Grupo duplicado):** Si ya existe un grupo con la misma información asociado al docente, el sistema informa que el grupo podría estar duplicado y evita su creación.
+* **Paso 13a (Error de registro):** Si ocurre un error al guardar el grupo, el sistema informa al docente que no fue posible crear el grupo.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El grupo queda registrado y asociado a la cuenta del docente.
 * El grupo queda disponible para agregar y administrar alumnos.
 
-### CU-10: Consultar grupo
+---
 
-**Actor:** Docente
+#### Caso de Uso 02: Consultar grupo
 
-**Objetivo:**
-Permitir que el docente consulte la información de un grupo y acceda a los datos relacionados con este.
+**ID:** CU-GRUPOS-02
+**Actor Principal:** Docente
+**Descripción:** Permite al docente consultar la información de un grupo y acceder a los datos relacionados con este.
 
 **Precondiciones:**
 
@@ -336,7 +359,7 @@ Permitir que el docente consulte la información de un grupo y acceda a los dato
 * El grupo debe estar registrado en su cuenta.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Grupos"**.
 2. El sistema muestra los grupos registrados.
@@ -344,23 +367,25 @@ Permitir que el docente consulte la información de un grupo y acceda a los dato
 4. El sistema muestra la información general del grupo.
 5. El sistema permite acceder a la información relacionada con los alumnos y otros datos registrados en el grupo.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el docente no tiene grupos registrados, el sistema muestra un mensaje indicando que no existen grupos.
-* Si el grupo seleccionado no está disponible, el sistema informa al docente y muestra nuevamente los grupos registrados.
-* Si ocurre un error al cargar la información, el sistema informa que no fue posible mostrar el grupo.
+* **Paso 2a (Sin grupos registrados):** Si el docente no tiene grupos registrados, el sistema muestra un mensaje indicando que no existen grupos disponibles.
+* **Paso 3a (Grupo no disponible):** Si el grupo seleccionado ya no está disponible, el sistema informa al docente y muestra nuevamente los grupos registrados.
+* **Paso 4a (Error al cargar información):** Si ocurre un error al cargar la información general del grupo, el sistema informa al docente que no fue posible mostrarla.
+* **Paso 5a (Información relacionada no disponible):** Si no existen datos relacionados con el grupo, el sistema muestra la información disponible e indica que no hay registros adicionales.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El docente puede consultar la información del grupo seleccionado.
 * El docente puede acceder a las funciones relacionadas con el grupo.
 
-### CU-11: Editar grupo
+---
 
-**Actor:** Docente
+#### Caso de Uso 03: Editar grupo
 
-**Objetivo:**
-Permitir que el docente modifique la información de un grupo cuando sea necesario.
+**ID:** CU-GRUPOS-03
+**Actor Principal:** Docente
+**Descripción:** Permite al docente modificar la información de un grupo cuando sea necesario.
 
 **Precondiciones:**
 
@@ -368,7 +393,7 @@ Permitir que el docente modifique la información de un grupo cuando sea necesar
 * El grupo debe estar registrado en su cuenta.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Grupos"**.
 2. El docente selecciona el grupo que desea modificar.
@@ -380,23 +405,28 @@ Permitir que el docente modifique la información de un grupo cuando sea necesar
 8. El sistema actualiza la información del grupo.
 9. El sistema muestra un mensaje indicando que los cambios se guardaron correctamente.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si algún dato ingresado no es válido, el sistema solicita corregirlo.
-* Si algún dato necesario está vacío, el sistema solicita completarlo.
-* Si ocurre un error al guardar los cambios, el sistema informa al docente que no fue posible actualizar el grupo.
+* **Paso 2a (Grupo no disponible):** Si el grupo seleccionado ya no existe o no está disponible, el sistema informa al docente y muestra nuevamente los grupos registrados.
+* **Paso 4a (Error al cargar información):** Si el sistema no puede cargar la información actual del grupo, informa al docente que no fue posible iniciar la edición.
+* **Paso 5a (Dato inválido):** Si algún dato modificado no es válido, el sistema solicita corregirlo.
+* **Paso 5b (Dato obligatorio vacío):** Si algún dato necesario queda vacío, el sistema solicita completarlo.
+* **Paso 6a (Cancelación):** Si el docente cancela la edición, el sistema descarta los cambios y conserva la información anterior.
+* **Paso 7a (Información inválida):** Si el sistema detecta información incorrecta durante la validación, bloquea el guardado y solicita corregirla.
+* **Paso 8a (Error al actualizar):** Si ocurre un error al guardar los cambios, el sistema informa al docente que no fue posible actualizar el grupo.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La información del grupo queda actualizada.
 * Los datos anteriores son reemplazados por la información modificada.
 
-### CU-12: Eliminar grupo
+---
 
-**Actor:** Docente
+#### Caso de Uso 04: Eliminar grupo
 
-**Objetivo:**
-Permitir que el docente elimine un grupo que ya no necesite utilizar.
+**ID:** CU-GRUPOS-04
+**Actor Principal:** Docente
+**Descripción:** Permite al docente eliminar un grupo que ya no necesite utilizar.
 
 **Precondiciones:**
 
@@ -404,7 +434,7 @@ Permitir que el docente elimine un grupo que ya no necesite utilizar.
 * El grupo debe estar registrado en su cuenta.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Grupos"**.
 2. El docente selecciona el grupo que desea eliminar.
@@ -414,25 +444,28 @@ Permitir que el docente elimine un grupo que ya no necesite utilizar.
 6. El sistema elimina el grupo.
 7. El sistema informa al docente que el grupo fue eliminado correctamente.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el docente cancela la eliminación, el sistema conserva el grupo y regresa a la información del grupo.
-* Si ocurre un error durante la eliminación, el sistema informa al docente que no fue posible eliminar el grupo.
-* Si el grupo ya no existe, el sistema informa al docente y actualiza la lista de grupos.
+* **Paso 2a (Grupo no disponible):** Si el grupo seleccionado ya no existe, el sistema informa al docente y actualiza la lista de grupos.
+* **Paso 4a (Cancelación):** Si el docente cancela la eliminación, el sistema conserva el grupo y regresa a la información del grupo.
+* **Paso 5a (Cancelación):** Si el docente no confirma la eliminación, el sistema cancela la operación y conserva el grupo.
+* **Paso 6a (Error durante la eliminación):** Si ocurre un error al eliminar el grupo, el sistema informa al docente que no fue posible realizar la operación.
+* **Paso 6b (Grupo eliminado previamente):** Si el grupo ya no existe al momento de realizar la eliminación, el sistema informa al docente y actualiza la lista de grupos.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El grupo deja de aparecer en la lista de grupos del docente.
 * El docente ya no puede acceder a la información del grupo eliminado.
 
+---
+
 ### Módulo 4: Lista de alumnos
 
-### CU-13: Agregar alumno
+#### Caso de Uso 05: Agregar alumno
 
-**Actor:** Docente
-
-**Objetivo:**
-Permitir que el docente agregue un alumno a la lista de un grupo.
+**ID:** CU-ALUMNOS-01
+**Actor Principal:** Docente
+**Descripción:** Permite al docente agregar un alumno a la lista de un grupo.
 
 **Precondiciones:**
 
@@ -440,7 +473,7 @@ Permitir que el docente agregue un alumno a la lista de un grupo.
 * El grupo debe estar registrado en su cuenta.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al grupo donde desea agregar al alumno.
 2. El docente selecciona la opción **"Agregar alumno"**.
@@ -452,24 +485,29 @@ Permitir que el docente agregue un alumno a la lista de un grupo.
 8. El sistema asigna automáticamente un número de lista al alumno.
 9. El sistema muestra al alumno dentro de la lista.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si algún dato necesario está vacío, el sistema solicita completar la información.
-* Si la información ingresada no es válida, el sistema solicita corregirla.
-* Si el alumno ya se encuentra registrado en el grupo, el sistema informa al docente para evitar un registro duplicado.
-* Si ocurre un error al registrar al alumno, el sistema informa al docente que no fue posible agregarlo.
+* **Paso 1a (Grupo no disponible):** Si el grupo seleccionado ya no existe o no está disponible, el sistema informa al docente y no permite agregar al alumno.
+* **Paso 3a (Error al mostrar formulario):** Si ocurre un error al cargar el formulario, el sistema informa al docente que no fue posible mostrarlo.
+* **Paso 4a (Dato obligatorio vacío):** Si algún dato necesario está vacío, el sistema solicita completarlo.
+* **Paso 4b (Información inválida):** Si la información ingresada no es válida, el sistema solicita corregirla.
+* **Paso 5a (Cancelación):** Si el docente cancela el registro, el sistema descarta la información ingresada y regresa a la lista.
+* **Paso 6a (Alumno duplicado):** Si el alumno ya se encuentra registrado en el grupo, el sistema informa al docente y evita crear un registro duplicado.
+* **Paso 7a (Error al registrar):** Si ocurre un error al registrar al alumno, el sistema informa al docente que no fue posible agregarlo.
+* **Paso 8a (Error al asignar número):** Si el sistema no puede asignar automáticamente un número de lista, informa al docente y evita finalizar el registro.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El alumno queda registrado en la lista del grupo.
 * El alumno cuenta con un número de lista asignado automáticamente.
 
-### CU-14: Consultar lista de alumnos
+---
 
-**Actor:** Docente
+#### Caso de Uso 06: Consultar lista de alumnos
 
-**Objetivo:**
-Permitir que el docente consulte la lista de alumnos registrados en un grupo.
+**ID:** CU-ALUMNOS-02
+**Actor Principal:** Docente
+**Descripción:** Permite al docente consultar la lista de alumnos registrados en un grupo.
 
 **Precondiciones:**
 
@@ -477,7 +515,7 @@ Permitir que el docente consulte la lista de alumnos registrados en un grupo.
 * El grupo debe estar registrado en su cuenta.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al grupo que desea consultar.
 2. El docente accede al apartado de **"Lista de alumnos"**.
@@ -485,21 +523,24 @@ Permitir que el docente consulte la lista de alumnos registrados en un grupo.
 4. El sistema muestra el número de lista y los datos disponibles de cada alumno.
 5. El docente consulta la información de la lista.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el grupo no tiene alumnos registrados, el sistema muestra un mensaje indicando que la lista está vacía.
-* Si ocurre un error al cargar la lista, el sistema informa al docente que no fue posible mostrar la información.
+* **Paso 1a (Grupo no disponible):** Si el grupo seleccionado ya no existe o no está disponible, el sistema informa al docente y muestra nuevamente los grupos registrados.
+* **Paso 3a (Lista vacía):** Si el grupo no tiene alumnos registrados, el sistema muestra un mensaje indicando que la lista está vacía.
+* **Paso 3b (Error al cargar lista):** Si ocurre un error al cargar los alumnos, el sistema informa al docente que no fue posible mostrar la información.
+* **Paso 4a (Datos incompletos):** Si algún alumno no tiene información disponible, el sistema muestra los datos existentes.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El docente puede consultar la lista de alumnos del grupo seleccionado.
 
-### CU-15: Ordenar lista de alumnos
+---
 
-**Actor:** Docente
+#### Caso de Uso 07: Ordenar lista de alumnos
 
-**Objetivo:**
-Permitir que el docente ordene la lista de alumnos de acuerdo con sus necesidades.
+**ID:** CU-ALUMNOS-03
+**Actor Principal:** Docente
+**Descripción:** Permite al docente ordenar la lista de alumnos de acuerdo con sus necesidades.
 
 **Precondiciones:**
 
@@ -507,7 +548,7 @@ Permitir que el docente ordene la lista de alumnos de acuerdo con sus necesidade
 * El grupo debe tener alumnos registrados.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa a la **"Lista de alumnos"**.
 2. El sistema muestra la lista de alumnos.
@@ -517,22 +558,26 @@ Permitir que el docente ordene la lista de alumnos de acuerdo con sus necesidade
 6. El sistema ordena la lista de acuerdo con la opción seleccionada.
 7. El sistema muestra nuevamente la lista con el orden elegido.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si no hay alumnos registrados, el sistema informa que no hay alumnos para ordenar.
-* Si ocurre un error al ordenar la lista, el sistema mantiene la lista y muestra un mensaje indicando que no fue posible realizar el ordenamiento.
+* **Paso 1a (Lista no disponible):** Si el grupo no tiene alumnos registrados, el sistema informa que no hay alumnos para ordenar.
+* **Paso 2a (Error al cargar lista):** Si ocurre un error al cargar la lista, el sistema informa al docente que no fue posible mostrarla.
+* **Paso 4a (Opciones no disponibles):** Si el sistema no puede cargar los criterios de ordenamiento, informa al docente que no fue posible realizar la operación.
+* **Paso 5a (Criterio no seleccionado):** Si el docente no selecciona ningún criterio, el sistema solicita seleccionar una opción.
+* **Paso 6a (Error al ordenar):** Si ocurre un error durante el ordenamiento, el sistema mantiene la lista sin cambios e informa al docente.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La lista de alumnos se muestra ordenada de acuerdo con la opción seleccionada.
 * El docente puede cambiar nuevamente el criterio de ordenamiento cuando lo necesite.
 
-### CU-16: Crear equipos
+---
 
-**Actor:** Docente
+#### Caso de Uso 08: Crear equipos
 
-**Objetivo:**
-Permitir que el docente seleccione alumnos de un grupo y los organice en equipos.
+**ID:** CU-ALUMNOS-04
+**Actor Principal:** Docente
+**Descripción:** Permite al docente seleccionar alumnos de un grupo y organizarlos en equipos.
 
 **Precondiciones:**
 
@@ -540,7 +585,7 @@ Permitir que el docente seleccione alumnos de un grupo y los organice en equipos
 * El grupo debe tener alumnos registrados.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa a la **"Lista de alumnos"**.
 2. El docente accede a la opción **"Crear equipos"**.
@@ -551,25 +596,30 @@ Permitir que el docente seleccione alumnos de un grupo y los organice en equipos
 7. El sistema muestra el equipo creado.
 8. El docente puede continuar seleccionando alumnos para crear otros equipos.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el docente no selecciona ningún alumno, el sistema solicita seleccionar al menos un alumno.
-* Si un alumno ya pertenece a un equipo y se intenta agregar nuevamente, el sistema informa al docente.
-* Si ocurre un error al crear el equipo, el sistema informa al docente que no fue posible realizar la operación.
+* **Paso 1a (Sin alumnos registrados):** Si no hay alumnos registrados en el grupo, el sistema informa que no existen alumnos disponibles para crear equipos.
+* **Paso 3a (Error al cargar alumnos):** Si ocurre un error al cargar la lista, el sistema informa al docente que no fue posible mostrar los alumnos.
+* **Paso 4a (Ningún alumno seleccionado):** Si el docente no selecciona ningún alumno, el sistema solicita seleccionar al menos uno.
+* **Paso 4b (Alumno ya asignado):** Si un alumno ya pertenece a un equipo y se intenta agregar nuevamente, el sistema informa al docente y evita la duplicación.
+* **Paso 5a (Cancelación):** Si el docente cancela la creación del equipo, el sistema descarta la selección y regresa a la lista de alumnos.
+* **Paso 6a (Error al crear equipo):** Si ocurre un error al crear el equipo, el sistema informa al docente que no fue posible realizar la operación.
+* **Paso 8a (Cancelación de nuevos equipos):** Si el docente decide no crear otro equipo, el sistema conserva los equipos creados y finaliza la operación.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * Los equipos quedan organizados con los alumnos seleccionados.
 * El docente puede consultar los equipos creados dentro del grupo.
 
+---
+
 ### Módulo 5: Alumnos
 
-### CU-17: Agregar información del alumno
+#### Caso de Uso 09: Agregar información del alumno
 
-**Actor:** Docente
-
-**Objetivo:**
-Permitir que el docente agregue información, observaciones o notas relacionadas con un alumno.
+**ID:** CU-ALUMNO-01
+**Actor Principal:** Docente
+**Descripción:** Permite al docente agregar información, observaciones o notas relacionadas con un alumno.
 
 **Precondiciones:**
 
@@ -577,7 +627,7 @@ Permitir que el docente agregue información, observaciones o notas relacionadas
 * El alumno debe estar registrado en el grupo.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Alumnos"**.
 2. El docente selecciona al alumno al que desea agregar información.
@@ -588,23 +638,27 @@ Permitir que el docente agregue información, observaciones o notas relacionadas
 7. El sistema guarda la información en la ficha del alumno.
 8. El sistema muestra un mensaje indicando que la información fue guardada correctamente.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el docente no ingresa información, el sistema solicita escribir la información que desea guardar.
-* Si el docente cancela la operación, el sistema no guarda los cambios.
-* Si ocurre un error al guardar la información, el sistema informa al docente que no fue posible realizar el registro.
+* **Paso 2a (Alumno no disponible):** Si el alumno seleccionado ya no está registrado, el sistema informa al docente y regresa a la lista de alumnos.
+* **Paso 3a (Error al cargar ficha):** Si ocurre un error al cargar la ficha del alumno, el sistema informa al docente que no fue posible mostrarla.
+* **Paso 5a (Información vacía):** Si el docente no ingresa información, el sistema solicita escribir la información que desea guardar.
+* **Paso 5b (Información no válida):** Si la información ingresada no cumple con las condiciones establecidas, el sistema solicita corregirla.
+* **Paso 6a (Cancelación):** Si el docente cancela el registro, el sistema no guarda los cambios y regresa a la ficha del alumno.
+* **Paso 7a (Error al guardar):** Si ocurre un error al guardar la información, el sistema informa al docente que no fue posible realizar el registro.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La información u observación queda registrada en la ficha del alumno.
 * El docente puede consultarla posteriormente.
 
-### CU-18: Buscar y consultar información del alumno
+---
 
-**Actor:** Docente
+#### Caso de Uso 10: Buscar y consultar información del alumno
 
-**Objetivo:**
-Permitir que el docente busque a un alumno y consulte la información registrada en su ficha.
+**ID:** CU-ALUMNO-02
+**Actor Principal:** Docente
+**Descripción:** Permite al docente buscar a un alumno y consultar la información registrada en su ficha.
 
 **Precondiciones:**
 
@@ -612,7 +666,7 @@ Permitir que el docente busque a un alumno y consulte la información registrada
 * El grupo debe tener alumnos registrados.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Alumnos"**.
 2. El docente utiliza la opción de búsqueda.
@@ -626,24 +680,30 @@ Permitir que el docente busque a un alumno y consulte la información registrada
 10. El sistema muestra las observaciones o notas relacionadas con el alumno.
 11. El docente consulta la información disponible.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si no se encuentra ningún alumno con la información ingresada, el sistema muestra un mensaje indicando que no se encontraron resultados.
-* Si la búsqueda se realiza sin ingresar información, el sistema muestra la lista de alumnos disponibles.
-* Si el alumno no tiene registros en alguno de los apartados, el sistema muestra la información disponible e indica que no existen registros en ese apartado.
-* Si ocurre un error durante la búsqueda o al cargar la información, el sistema informa al docente que no fue posible mostrarla.
+* **Paso 2a (Búsqueda no disponible):** Si ocurre un error al cargar la opción de búsqueda, el sistema informa al docente que no fue posible realizarla.
+* **Paso 3a (Búsqueda sin información):** Si el docente realiza la búsqueda sin ingresar información, el sistema muestra la lista de alumnos disponibles.
+* **Paso 4a (Alumno no encontrado):** Si no se encuentra ningún alumno con la información ingresada, el sistema muestra un mensaje indicando que no se encontraron resultados.
+* **Paso 5a (Sin coincidencias):** Si la búsqueda no produce coincidencias, el sistema informa que no existen alumnos que coincidan con los datos ingresados.
+* **Paso 6a (Alumno no disponible):** Si el alumno seleccionado ya no está disponible, el sistema informa al docente y regresa a los resultados.
+* **Paso 7a (Error al cargar ficha):** Si ocurre un error al cargar la ficha del alumno, el sistema informa al docente que no fue posible mostrarla.
+* **Paso 9a (Sin registros académicos):** Si el alumno no tiene asistencias, participaciones o calificaciones registradas, el sistema muestra la información disponible e indica los apartados sin registros.
+* **Paso 10a (Sin observaciones):** Si el alumno no tiene observaciones registradas, el sistema indica que no existen notas disponibles.
+* **Paso 11a (Error al cargar información):** Si ocurre un error durante la consulta de la información, el sistema informa al docente que no fue posible mostrarla.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El docente puede encontrar al alumno que estaba buscando.
 * El docente puede consultar la información registrada en su ficha.
 
-### CU-19: Editar información del alumno
+---
 
-**Actor:** Docente
+#### Caso de Uso 11: Editar información del alumno
 
-**Objetivo:**
-Permitir que el docente modifique la información registrada en la ficha de un alumno.
+**ID:** CU-ALUMNO-03
+**Actor Principal:** Docente
+**Descripción:** Permite al docente modificar la información registrada en la ficha de un alumno.
 
 **Precondiciones:**
 
@@ -651,7 +711,7 @@ Permitir que el docente modifique la información registrada en la ficha de un a
 * El alumno debe estar registrado en el grupo.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente selecciona al alumno que desea modificar.
 2. El sistema muestra la ficha del alumno.
@@ -663,24 +723,29 @@ Permitir que el docente modifique la información registrada en la ficha de un a
 8. El sistema guarda los cambios realizados.
 9. El sistema muestra un mensaje indicando que la información fue actualizada correctamente.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si algún dato ingresado no es válido, el sistema solicita corregirlo.
-* Si algún dato necesario está vacío, el sistema solicita completarlo.
-* Si el docente cancela la edición, el sistema conserva la información anterior.
-* Si ocurre un error al guardar los cambios, el sistema informa al docente que no fue posible actualizar la información.
+* **Paso 1a (Alumno no disponible):** Si el alumno seleccionado ya no está registrado, el sistema informa al docente y regresa a la lista.
+* **Paso 2a (Error al cargar ficha):** Si ocurre un error al cargar la ficha, el sistema informa al docente que no fue posible iniciar la edición.
+* **Paso 4a (Error al cargar información):** Si el sistema no puede mostrar la información actual del alumno, informa al docente que no fue posible continuar.
+* **Paso 5a (Dato inválido):** Si algún dato ingresado no es válido, el sistema solicita corregirlo.
+* **Paso 5b (Dato necesario vacío):** Si algún dato necesario está vacío, el sistema solicita completarlo.
+* **Paso 6a (Cancelación):** Si el docente cancela la edición, el sistema conserva la información anterior y descarta los cambios.
+* **Paso 7a (Información inválida):** Si el sistema detecta información incorrecta durante la validación, bloquea el guardado y solicita corregirla.
+* **Paso 8a (Error al guardar):** Si ocurre un error al guardar los cambios, el sistema informa al docente que no fue posible actualizar la información.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La información del alumno queda actualizada.
 * Los demás registros del alumno se mantienen sin cambios.
 
-### CU-20: Consultar progreso del alumno
+---
 
-**Actor:** Docente
+#### Caso de Uso 12: Consultar progreso del alumno
 
-**Objetivo:**
-Permitir que el docente consulte el progreso de un alumno a partir de la información registrada.
+**ID:** CU-ALUMNO-04
+**Actor Principal:** Docente
+**Descripción:** Permite al docente consultar el progreso de un alumno a partir de la información registrada.
 
 **Precondiciones:**
 
@@ -688,7 +753,7 @@ Permitir que el docente consulte el progreso de un alumno a partir de la informa
 * El alumno debe estar registrado en el grupo.
 * El sistema debe tener información registrada del alumno.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente selecciona al alumno que desea consultar.
 2. El sistema muestra la ficha del alumno.
@@ -697,55 +762,64 @@ Permitir que el docente consulte el progreso de un alumno a partir de la informa
 5. El sistema muestra sus asistencias, participaciones y calificaciones.
 6. El docente revisa la información mostrada para conocer el progreso del alumno.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el alumno no tiene suficiente información registrada, el sistema muestra los datos disponibles.
-* Si no existen registros en alguno de los apartados, el sistema indica que todavía no hay información registrada.
-* Si ocurre un error al consultar la información, el sistema informa al docente que no fue posible mostrar el progreso.
+* **Paso 1a (Alumno no disponible):** Si el alumno seleccionado ya no está registrado, el sistema informa al docente y regresa a la lista de alumnos.
+* **Paso 2a (Error al cargar ficha):** Si ocurre un error al cargar la ficha del alumno, el sistema informa al docente que no fue posible mostrarla.
+* **Paso 3a (Apartado no disponible):** Si el apartado de progreso no puede cargarse, el sistema informa al docente que no fue posible consultar el progreso.
+* **Paso 4a (Información insuficiente):** Si el alumno no tiene suficiente información registrada, el sistema muestra los datos disponibles.
+* **Paso 4b (Sin registros):** Si no existen registros del alumno, el sistema indica que todavía no hay información registrada.
+* **Paso 5a (Apartado sin registros):** Si no existen registros en alguno de los apartados, el sistema indica que todavía no hay información registrada en ese apartado.
+* **Paso 5b (Error al cargar registros):** Si ocurre un error al consultar alguno de los registros, el sistema informa al docente que no fue posible mostrar la información correspondiente.
+* **Paso 6a (Error al mostrar progreso):** Si ocurre un error al presentar el progreso, el sistema informa al docente que no fue posible completar la consulta.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El docente puede consultar la información relacionada con el progreso del alumno.
 * El docente puede conocer su desempeño a partir de los registros disponibles.
 
+---
+
 ### Módulo 6: Horarios
 
-### CU-21: Consultar horario
+#### Caso de Uso 13: Consultar horario
 
-**Actor:** Docente
-
-**Objetivo:**
-Permitir que el docente consulte su horario semanal y las clases asignadas.
+**ID:** CU-HORARIOS-01
+**Actor Principal:** Docente
+**Descripción:** Permite al docente consultar su horario semanal y las clases asignadas.
 
 **Precondiciones:**
 
 * El docente debe haber iniciado sesión.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Horarios"**.
 2. El sistema muestra los días de toda la semana.
 3. El sistema muestra las horas y los salones asignados en cada bloque.
 4. El docente consulta su horario.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si no existen horarios registrados, el sistema muestra un mensaje indicando que todavía no hay horarios asignados.
-* Si algún día no tiene clases registradas, el sistema muestra el día sin asignaciones.
-* Si ocurre un error al cargar el horario, el sistema informa al docente que no fue posible mostrar la información.
+* **Paso 2a (Sin horarios registrados):** Si no existen horarios registrados, el sistema muestra un mensaje indicando que todavía no hay horarios asignados.
+* **Paso 3a (Día sin clases):** Si algún día no tiene clases registradas, el sistema muestra el día sin asignaciones.
+* **Paso 3b (Información incompleta):** Si alguna clase no tiene todos sus datos registrados, el sistema muestra la información disponible.
+* **Paso 3c (Error al cargar horario):** Si ocurre un error al cargar la información, el sistema informa al docente que no fue posible mostrar el horario.
+* **Paso 4a (Error durante la consulta):** Si ocurre un error mientras el docente consulta el horario, el sistema informa que no fue posible completar la consulta.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * El docente puede consultar su horario semanal.
 * El docente puede identificar las horas y salones asignados.
 
-### CU-22: Asignar horario
+---
 
-**Actor:** Docente
+#### Caso de Uso 14: Asignar horario
 
-**Objetivo:**
-Permitir que el docente asigne una hora y un salón para una clase dentro de su horario.
+**ID:** CU-HORARIOS-02
+**Actor Principal:** Docente
+**Descripción:** Permite al docente asignar una hora y un salón para una clase dentro de su horario.
 
 **Precondiciones:**
 
@@ -753,7 +827,7 @@ Permitir que el docente asigne una hora y un salón para una clase dentro de su 
 * El sistema debe estar disponible.
 * Debe existir un grupo registrado.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Horarios"**.
 2. El docente selecciona el día en el que desea asignar una clase.
@@ -764,23 +838,29 @@ Permitir que el docente asigne una hora y un salón para una clase dentro de su 
 7. El sistema registra la clase en el horario seleccionado.
 8. El sistema muestra la clase dentro del horario semanal.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si no se selecciona un día u horario, el sistema solicita completar la información.
-* Si el horario seleccionado ya tiene una clase asignada, el sistema informa al docente para evitar una asignación incorrecta.
-* Si ocurre un error al guardar la asignación, el sistema informa al docente que no fue posible registrar el horario.
+* **Paso 2a (Día no seleccionado):** Si el docente no selecciona un día, el sistema solicita completar la información.
+* **Paso 3a (Horario no seleccionado):** Si el docente no selecciona un horario, el sistema solicita seleccionar uno.
+* **Paso 3b (Horario ocupado):** Si el horario seleccionado ya tiene una clase asignada, el sistema informa al docente para evitar una asignación incorrecta.
+* **Paso 4a (Salón no ingresado):** Si el docente no proporciona el salón requerido, el sistema solicita completar la información.
+* **Paso 4b (Salón inválido):** Si el salón ingresado no es válido, el sistema solicita corregirlo.
+* **Paso 5a (Cancelación):** Si el docente cancela la asignación, el sistema descarta la información ingresada y regresa al horario.
+* **Paso 6a (Información inválida):** Si el sistema detecta información incorrecta durante la validación, solicita corregirla.
+* **Paso 7a (Error al guardar):** Si ocurre un error al registrar la clase, el sistema informa al docente que no fue posible guardar la asignación.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La clase queda registrada en el día y horario seleccionado.
 * El salón queda asociado a la clase.
 
-### CU-23: Editar horario
+---
 
-**Actor:** Docente
+#### Caso de Uso 15: Editar horario
 
-**Objetivo:**
-Permitir que el docente modifique una asignación de horario cuando sea necesario.
+**ID:** CU-HORARIOS-03
+**Actor Principal:** Docente
+**Descripción:** Permite al docente modificar una asignación de horario cuando sea necesario.
 
 **Precondiciones:**
 
@@ -788,7 +868,7 @@ Permitir que el docente modifique una asignación de horario cuando sea necesari
 * Debe existir una clase registrada en el horario.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Horarios"**.
 2. El docente selecciona la clase que desea modificar.
@@ -800,23 +880,28 @@ Permitir que el docente modifique una asignación de horario cuando sea necesari
 8. El sistema actualiza la asignación.
 9. El sistema muestra el horario actualizado.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si la nueva información no es válida, el sistema solicita corregirla.
-* Si el docente cancela la edición, el sistema conserva la información anterior.
-* Si ocurre un error al guardar los cambios, el sistema informa al docente que no fue posible actualizar el horario.
+* **Paso 2a (Clase no disponible):** Si la clase seleccionada ya no existe, el sistema informa al docente y actualiza el horario.
+* **Paso 4a (Error al cargar información):** Si el sistema no puede mostrar la información actual de la clase, informa al docente que no fue posible iniciar la edición.
+* **Paso 5a (Información inválida):** Si la nueva información no es válida, el sistema solicita corregirla.
+* **Paso 5b (Horario ocupado):** Si el nuevo horario seleccionado ya tiene otra clase asignada, el sistema informa al docente y solicita seleccionar otro horario.
+* **Paso 6a (Cancelación):** Si el docente cancela la edición, el sistema conserva la información anterior y descarta los cambios.
+* **Paso 7a (Información inválida):** Si el sistema detecta información incorrecta durante la validación, bloquea la actualización y solicita corregirla.
+* **Paso 8a (Error al guardar):** Si ocurre un error al actualizar la asignación, el sistema informa al docente que no fue posible actualizar el horario.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La asignación del horario queda actualizada.
 * El docente puede consultar el horario con la nueva información.
 
-### CU-24: Eliminar horario
+---
 
-**Actor:** Docente
+#### Caso de Uso 16: Eliminar horario
 
-**Objetivo:**
-Permitir que el docente elimine una asignación de horario que ya no necesite.
+**ID:** CU-HORARIOS-04
+**Actor Principal:** Docente
+**Descripción:** Permite al docente eliminar una asignación de horario que ya no necesite.
 
 **Precondiciones:**
 
@@ -824,7 +909,7 @@ Permitir que el docente elimine una asignación de horario que ya no necesite.
 * Debe existir una asignación registrada en el horario.
 * El sistema debe estar disponible.
 
-**Flujo principal:**
+**Flujo Principal (Escenario de Éxito):**
 
 1. El docente ingresa al apartado de **"Horarios"**.
 2. El docente selecciona la clase que desea eliminar.
@@ -834,13 +919,15 @@ Permitir que el docente elimine una asignación de horario que ya no necesite.
 6. El sistema elimina la asignación del horario.
 7. El sistema actualiza el horario semanal.
 
-**Flujos alternativos:**
+**Flujos Alternativos (Excepciones y Errores):**
 
-* Si el docente cancela la eliminación, el sistema conserva la asignación.
-* Si la asignación ya no existe, el sistema informa al docente y actualiza el horario.
-* Si ocurre un error al eliminar la asignación, el sistema informa al docente que no fue posible realizar la operación.
+* **Paso 2a (Asignación no disponible):** Si la asignación seleccionada ya no existe, el sistema informa al docente y actualiza el horario.
+* **Paso 4a (Cancelación):** Si el docente cancela la eliminación, el sistema conserva la asignación y regresa al horario.
+* **Paso 5a (Cancelación):** Si el docente no confirma la eliminación, el sistema cancela la operación y conserva la asignación.
+* **Paso 6a (Error durante la eliminación):** Si ocurre un error al eliminar la asignación, el sistema informa al docente que no fue posible realizar la operación.
+* **Paso 7a (Error al actualizar horario):** Si ocurre un error al actualizar el horario semanal, el sistema informa al docente que no fue posible mostrar el horario actualizado.
 
-**Postcondición:**
+**Postcondiciones:**
 
 * La asignación eliminada deja de aparecer en el horario.
 * Las demás asignaciones del horario se mantienen sin cambios.
