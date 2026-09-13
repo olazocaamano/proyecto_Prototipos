@@ -25,26 +25,30 @@
 
 1. El docente selecciona la opción **"Registrarse"**.
 2. El sistema muestra el formulario de registro.
-3. El docente ingresa su usuario.
-4. El docente ingresa su correo electrónico.
-5. El docente crea una contraseña.
-6. El docente confirma el registro.
-7. El sistema valida la información ingresada.
-8. El sistema verifica que el usuario y correo electrónico no estén registrados previamente.
-9. El sistema crea la cuenta del docente.
-10. El sistema informa que el registro se realizó correctamente.
+3. El docente ingresa su nombre.
+4. El docente ingresa sus apellidos.
+5. El docente ingresa su usuario.
+6. El docente ingresa su correo electrónico.
+7. El docente crea una contraseña.
+8. El docente confirma el registro.
+9. El sistema valida la información ingresada.
+10. El sistema verifica que el usuario y correo electrónico no estén registrados previamente.
+11. El sistema crea la cuenta del docente.
+12. El sistema informa que el registro se realizó correctamente.
 
 **Flujos Alternativos (Excepciones y Errores):**
 
-* **Paso 3a:** Si el docente no ingresa el usuario, el sistema solicita completar el campo.
-* **Paso 3b:** Si el usuario ingresado ya está registrado, el sistema informa al docente y solicita ingresar otro usuario.
-* **Paso 4a:** Si el docente no ingresa el correo electrónico, el sistema solicita completar el campo.
-* **Paso 4b:** Si el correo electrónico tiene un formato incorrecto, el sistema solicita ingresar un correo válido.
-* **Paso 4c:** Si el correo electrónico ya está registrado, el sistema informa al docente y solicita utilizar otro correo.
-* **Paso 5a:** Si la contraseña no cumple con los requisitos de seguridad establecidos, el sistema solicita crear una contraseña válida.
-* **Paso 6a:** Si el docente no confirma el registro, el sistema mantiene el formulario sin crear la cuenta.
-* **Paso 7a:** Si algún dato ingresado no es válido, el sistema informa al docente y solicita corregirlo.
-* **Paso 9a:** Si ocurre un error durante la creación de la cuenta, el sistema informa al docente que la cuenta no pudo ser creada.
+* **Paso 3a:** Si el docente no ingresa su nombre, el sistema solicita completar el campo.
+* **Paso 4a:** Si el docente no ingresa sus apellidos, el sistema solicita completar el campo.
+* **Paso 5a:** Si el docente no ingresa el usuario, el sistema solicita completar el campo.
+* **Paso 5b:** Si el usuario ingresado ya está registrado, el sistema informa al docente y solicita ingresar otro usuario.
+* **Paso 6a:** Si el docente no ingresa el correo electrónico, el sistema solicita completar el campo.
+* **Paso 6b:** Si el correo electrónico tiene un formato incorrecto, el sistema solicita ingresar un correo válido.
+* **Paso 6c:** Si el correo electrónico ya está registrado, el sistema informa al docente y solicita utilizar otro correo.
+* **Paso 7a:** Si la contraseña no cumple con los requisitos de seguridad establecidos, el sistema solicita crear una contraseña válida.
+* **Paso 8a:** Si el docente no confirma el registro, el sistema mantiene el formulario sin crear la cuenta.
+* **Paso 9a:** Si algún dato ingresado no es válido, el sistema informa al docente y solicita corregirlo.
+* **Paso 11a:** Si ocurre un error durante la creación de la cuenta, el sistema informa al docente que la cuenta no pudo ser creada.
 
 **Postcondiciones:**
 
@@ -116,9 +120,9 @@
 5. El sistema envía las instrucciones de recuperación al correo electrónico asociado.
 6. El docente accede al enlace de recuperación proporcionado.
 7. El sistema solicita establecer una nueva contraseña.
-8. El docente ingresa y confirma la nueva contraseña.
+8. El docente ingresa la nueva contraseña y la confirma.
 9. El sistema valida los requisitos de seguridad de la nueva contraseña.
-10. El sistema actualiza la contraseña.
+10. El sistema actualiza la contraseña de la cuenta asociada al correo electrónico.
 11. El sistema informa que la contraseña fue modificada correctamente.
 
 **Flujos Alternativos (Excepciones y Errores):**
@@ -128,7 +132,7 @@
 * **Paso 4a:** Si el correo electrónico no está registrado, el sistema informa que no existe una cuenta asociada.
 * **Paso 5a:** Si ocurre un error al enviar las instrucciones de recuperación, el sistema informa que no fue posible enviar el correo.
 * **Paso 6a:** Si el enlace de recuperación no es válido o ha expirado, el sistema informa al docente y solicita iniciar nuevamente el proceso.
-* **Paso 8a:** Si las contraseñas ingresadas no coinciden, el sistema solicita confirmarla nuevamente.
+* **Paso 8a:** Si las contraseñas ingresadas no coinciden, el sistema solicita confirmarlas nuevamente.
 * **Paso 9a:** Si la nueva contraseña no cumple con los requisitos de seguridad, el sistema solicita ingresar una contraseña diferente.
 * **Paso 10a:** Si ocurre un error al actualizar la contraseña, el sistema informa que no fue posible restablecerla.
 
