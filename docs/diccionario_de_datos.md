@@ -54,7 +54,6 @@ Tabla intermedia para relacionar qué alumnos están inscritos en qué grupo.
 | student_id  | INT  | FK, Not Null       | Identificador del alumno registrado en el grupo.               |
 | group_id    | INT  | FK, Not Null       | Identificador del grupo al que pertenece el alumno.            |
 | list_number | INT  | Not Null           | Número de lista asignado al alumno dentro del grupo.           |
-<<<<<<< HEAD
 
 ### Tabla: HORARIOS (Módulo 6: Horarios)
 Almacena la configuración de los días, horas y aulas en las que se imparten las clases de cada grupo.
@@ -67,22 +66,6 @@ Almacena la configuración de los días, horas y aulas en las que se imparten la
 | start_time  | TIME        | Not Null           | Hora de inicio de la clase.                                             |
 | end_time    | TIME        | Not Null           | Hora de finalización de la clase.                                       |
 | room        | VARCHAR(50) | Null               | Aula o salón donde se imparte la clase, cuando se encuentre disponible. |
-=======
-
-
-### Tabla: HORARIOS (Módulo 6: Horarios)
-Almacena la configuración de los días, horas y aulas en las que se imparten las clases de cada grupo.
-
-| Campo       | Tipo        | Restricción        | Descripción                                                             |
-| :---------- | :---------- | :----------------- | :---------------------------------------------------------------------- |
-| id          | INT         | PK, Auto Increment | Identificador único para cada horario.                                  |
-| group_id    | INT         | FK, Not Null       | Identificador del grupo al que pertenece el horario.                    |
-| day_of_week | VARCHAR(15) | Not Null           | Día de la semana en el que se imparte la clase.                         |
-| start_time  | TIME        | Not Null           | Hora de inicio de la clase.                                             |
-| end_time    | TIME        | Not Null           | Hora de finalización de la clase.                                       |
-| room        | VARCHAR(50) | Null               | Aula o salón donde se imparte la clase, cuando se encuentre disponible. |
-
->>>>>>> 90d04dea501ee6a2cf12186e9e8b5ea07bf612d4
 
 ---
 
@@ -94,11 +77,7 @@ Almacena el registro diario del pase de lista por alumno.
 | Campo                | Tipo         | Restricción        | Descripción                                                        |
 | :------------------- | :----------- | :----------------- | :----------------------------------------------------------------- |
 | id_attendance        | INT          | PK, Auto Increment | Identificador único del registro de asistencia.                    |
-<<<<<<< HEAD
 | student_group_id     | INT          | FK, Not Null       | Relación con el alumno específico dentro de un grupo.              |
-=======
-| id_student_group     | INT          | FK, Not Null       | Relación con el alumno específico dentro de un grupo.              |
->>>>>>> 90d04dea501ee6a2cf12186e9e8b5ea07bf612d4
 | date                 | DATE         | Not Null           | Fecha exacta del registro de asistencia.                           |
 | status               | ENUM         | Not Null           | Valores permitidos: 'Presente', 'Falta', 'Retardo', 'Justificado'. |
 | justification_reason | VARCHAR(255) | Null               | Descripción opcional del motivo si el estado es 'Justificado'.     |
@@ -109,11 +88,7 @@ Almacena los valores numéricos asignados por participación en clase.
 | Campo            | Tipo         | Restricción        | Descripción                                                          |
 | :--------------- | :----------- | :----------------- | :------------------------------------------------------------------- |
 | id_participation | INT          | PK, Auto Increment | Identificador único del registro de participación.                   |
-<<<<<<< HEAD
 | student_group_id | INT          | FK, Not Null       | Relación con el alumno que participó.                                |
-=======
-| id_student_group | INT          | FK, Not Null       | Relación con el alumno que participó.                                |
->>>>>>> 90d04dea501ee6a2cf12186e9e8b5ea07bf612d4
 | date             | DATE         | Not Null           | Fecha en la que se otorgó la participación.                          |
 | assigned_value   | DECIMAL(5,2) | Not Null           | Puntaje numérico asignado al alumno (puede ser positivo o negativo). |
 | notes            | VARCHAR(255) | Null               | Comentario breve opcional sobre la participación.                    |
@@ -124,11 +99,7 @@ Almacena los rubros y porcentajes configurados por el docente para evaluar un pe
 | Campo          | Tipo         | Restricción        | Descripción                                                              |
 | :------------- | :----------- | :----------------- | :----------------------------------------------------------------------- |
 | id_criterion   | INT          | PK, Auto Increment | Identificador único del criterio de evaluación.                          |
-<<<<<<< HEAD
 | group_id       | INT          | FK, Not Null       | Relación con el grupo al que pertenece este criterio.                    |
-=======
-| id_group       | INT          | FK, Not Null       | Relación con el grupo al que pertenece este criterio.                    |
->>>>>>> 90d04dea501ee6a2cf12186e9e8b5ea07bf612d4
 | criterion_name | VARCHAR(50)  | Not Null           | Nombre del rubro (Ej. Examen, Proyecto, Tareas).                         |
 | percentage     | DECIMAL(5,2) | Not Null           | Peso de este criterio en la calificación final (Ej. 30.00).              |
 | is_automatic   | BOOLEAN      | Default FALSE      | Indica si el criterio se calcula solo (como asistencia o participación). |
@@ -139,11 +110,7 @@ Almacena las notas específicas asignadas a cada alumno según los criterios.
 | Campo            | Tipo         | Restricción               | Descripción                                                |
 | :--------------- | :----------- | :------------------------ | :--------------------------------------------------------- |
 | id_grade         | INT          | PK, Auto Increment        | Identificador único del registro de calificación.          |
-<<<<<<< HEAD
 | student_group_id | INT          | FK, Not Null              | Relación con el alumno evaluado.                           |
-=======
-| id_student_group | INT          | FK, Not Null              | Relación con el alumno evaluado.                           |
->>>>>>> 90d04dea501ee6a2cf12186e9e8b5ea07bf612d4
 | id_criterion     | INT          | FK, Not Null              | Relación con el criterio bajo el cual se está evaluando.   |
 | obtained_grade   | DECIMAL(5,2) | Not Null                  | Nota numérica registrada por el docente para ese criterio. |
 | created_at       | DATETIME     | Default CURRENT_TIMESTAMP | Fecha y hora exacta en la que se guardó la calificación.   |
@@ -154,11 +121,7 @@ Almacena el historial de notificaciones, acuerdos y tutorías de estudiantes det
 | Campo            | Tipo         | Restricción        | Descripción                                                         |
 | :--------------- | :----------- | :----------------- | :------------------------------------------------------------------ |
 | id_alert         | INT          | PK, Auto Increment | Identificador único del registro de alerta.                         |
-<<<<<<< HEAD
 | student_group_id | INT          | FK, Not Null       | Relación con el alumno detectado en riesgo.                         |
-=======
-| id_student_group | INT          | FK, Not Null       | Relación con el alumno detectado en riesgo.                         |
->>>>>>> 90d04dea501ee6a2cf12186e9e8b5ea07bf612d4
 | main_reason      | VARCHAR(100) | Not Null           | Razón detectada (Ej. Inasistencias críticas, Bajas calificaciones). |
 | detection_date   | DATE         | Not Null           | Fecha en la que el sistema o el docente generó la alerta.           |
 | follow_up_note   | TEXT         | Null               | Registro textual sobre tutorías, citatorios o acuerdos logrados.    |
@@ -170,11 +133,7 @@ Almacena los metadatos, etiquetas y rutas de los documentos subidos por el docen
 | Campo         | Tipo         | Restricción               | Descripción                                                   |
 | :------------ | :----------- | :------------------------ | :------------------------------------------------------------ |
 | id_file       | INT          | PK, Auto Increment        | Identificador único del documento en la base de datos.        |
-<<<<<<< HEAD
 | teacher_id    | INT          | FK, Not Null              | Relación con el docente propietario del archivo.              |
-=======
-| id_teacher    | INT          | FK, Not Null              | Relación con el docente propietario del archivo.              |
->>>>>>> 90d04dea501ee6a2cf12186e9e8b5ea07bf612d4
 | original_name | VARCHAR(150) | Not Null                  | Nombre del documento al momento de ser subido.                |
 | document_type | VARCHAR(50)  | Not Null                  | Clasificación seleccionada (Ej. Planeación, Examen, Lectura). |
 | tags          | VARCHAR(255) | Null                      | Palabras clave separadas por comas para búsqueda cruzada.     |
@@ -187,11 +146,7 @@ Almacena los registros de consultas hechas al asistente o reactivos generados.
 | Campo              | Tipo     | Restricción               | Descripción                                                                |
 | :----------------- | :------- | :------------------------ | :------------------------------------------------------------------------- |
 | id_ai_query        | INT      | PK, Auto Increment        | Identificador único de la interacción con el modelo de IA.                 |
-<<<<<<< HEAD
 | teacher_id         | INT      | FK, Not Null              | Relación con el docente que ejecutó la consulta.                           |
-=======
-| id_teacher         | INT      | FK, Not Null              | Relación con el docente que ejecutó la consulta.                           |
->>>>>>> 90d04dea501ee6a2cf12186e9e8b5ea07bf612d4
 | request_prompt     | TEXT     | Not Null                  | Texto o instrucción ingresada por el docente (la pregunta).                |
 | generated_response | TEXT     | Not Null                  | El resultado en texto devuelto por el servicio de Inteligencia Artificial. |
 | query_date         | DATETIME | Default CURRENT_TIMESTAMP | Momento exacto de la interacción.                                          |
