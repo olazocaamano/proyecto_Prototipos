@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
     DOCENTES {
         INT id PK
@@ -119,3 +120,4 @@ erDiagram
     ALUMNOS_GRUPOS ||--o{ ALERTAS_RIESGO : "genera"
     
     CRITERIOS_EVALUACION ||--o{ CALIFICACIONES : "evalúa"
+```
