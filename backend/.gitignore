@@ -1,0 +1,5 @@
+# Credenciales locales del backend
+# Este archivo NUNCA se sube al repositorio (contiene la contraseña de Aiven).
+# Al clonar el proyecto, copia credenciales.example.php a credenciales.php
+# y coloca los datos reales.
+config/credenciales.php
