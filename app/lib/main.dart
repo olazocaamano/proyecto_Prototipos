@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
-import 'screens/register/register_screen.dart';
+import 'screens/login/login_screen.dart';
 
 void main() {
   // Inicia la aplicacion
@@ -18,14 +18,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // Nombre de la aplicacion
-      title: 'wnjkjn',
+      title: 'Sistema Inteligente de Apoyo Docente',
       debugShowCheckedModeBanner: false,
 
       // tema general
       theme: AppTheme.lightTheme,
 
       // Pantalla inicial
-      home: const RegisterScreen(),
+      home: const LoginScreen(),
     );
   }
 }
