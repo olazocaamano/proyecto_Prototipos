@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:app/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -90,6 +91,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
         _mostrarMensaje('¡Bienvenido${nombre.isNotEmpty ? ', $nombre' : ''}!');
 
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+        );
         // conexion con el dashboard futura
       } else {
         _mostrarMensaje(
