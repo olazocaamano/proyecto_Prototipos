@@ -91,9 +91,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
         _mostrarMensaje('¡Bienvenido${nombre.isNotEmpty ? ', $nombre' : ''}!');
 
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const HomeScreen()),
+          MaterialPageRoute(builder: (_) => HomeScreen(nombreUsuario: nombre)),
         );
         // conexion con el dashboard futura
       } else {
